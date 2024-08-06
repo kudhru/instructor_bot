@@ -79,7 +79,8 @@ teaching_instructions = Path('evaluation_prompt_lecture_1.txt').read_text()
 assistant = client.beta.assistants.create(
     name="PPL Evaluator",
     instructions=teaching_instructions,
-    model="gpt-4o",
+    model="gpt-4o-mini",
+    # model="gpt-4o",
     tools=[{"type": "file_search"}],
 )
 assistant = client.beta.assistants.update(
