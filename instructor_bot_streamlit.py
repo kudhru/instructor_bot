@@ -1,13 +1,11 @@
 import os
 import ast
 from pathlib import Path
-from dotenv import load_dotenv
 import streamlit as st
 from openai import OpenAI
 from openai import AssistantEventHandler
 from typing_extensions import override
 from openai.types.beta.threads import Text, TextDelta
-import json
 
 class EventHandler(AssistantEventHandler):
     """
@@ -55,8 +53,8 @@ class EventHandler(AssistantEventHandler):
         st.session_state.assistant_text.append("")
         st.session_state.chat_history.append(("assistant", text.value))
 
-load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# load_dotenv()
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 if 'vector_store_id' not in st.session_state:
     # Create a vector store for book chapter
