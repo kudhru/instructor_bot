@@ -97,7 +97,14 @@ assistant = client.beta.assistants.update(
 #     model="gpt-4o",
 # )
 
-st.title("💬 Chatbot")
+# st.title("💬 Chatbot")
+st.title("💬 Instructor Bot for PPL Lecture 1")
+"""
+This bot will take you through the entire lecture material for Lecture 1. 
+
+Please start interaction with the Instructor Bot by typing in 'Hi', 'Hello' etc.  
+"""
+
 text_box = st.empty()
 
 
