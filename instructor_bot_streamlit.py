@@ -1,5 +1,6 @@
 import os
 import ast
+import sys
 from pathlib import Path
 import streamlit as st
 from openai import OpenAI
@@ -75,7 +76,12 @@ if 'vector_store_id' not in st.session_state:
     print(file_batch.file_counts)
     st.session_state.vector_store_id = vector_store.id
 
-teaching_instructions = Path('teaching_prompt_lecture_1.txt').read_text()
+if 'lecture_no' not in st.session_state:
+    st.session_state.lecture_no = sys.argv[1]
+    st.session_state.prompt_file = 'teaching_prompt_lecture_{0}.txt'.format(st.session_state.lecture_no)
+    print("\nName of prompt file: ", st.session_state.prompt_file)
+    print("\n")
+teaching_instructions = Path(st.session_state.prompt_file).read_text()
 assistant = client.beta.assistants.create(
     name="PPL Instructor",
     instructions=teaching_instructions,
@@ -99,7 +105,7 @@ assistant = client.beta.assistants.update(
 # )
 
 # st.title("💬 Chatbot")
-st.title("💬 Instructor Bot for PPL Lecture 1")
+st.title("💬 Instructor Bot for PPL Lecture {0}".format(st.session_state.lecture_no))
 """
 This bot will take you through the entire lecture material for Lecture 1. 
 
