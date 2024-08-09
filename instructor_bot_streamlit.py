@@ -17,16 +17,6 @@ class EventHandler(AssistantEventHandler):
         """
         Handler for when a text is created
         """
-        # This try-except block will update the earlier expander for code to complete.
-        # Note the indexing. We are updating the x-1 textbox where x is the current textbox.
-        # Note how `on_tool_call_done` creates a new textbook (which is the x_th textbox, so we want to access the x-1_th)
-        # This is to address an edge case where code is executed, but there is no output textbox (e.g. a graph is created)
-        # try:
-        #     st.session_state[f"code_expander_{len(st.session_state.text_boxes) - 1}"].update(state="complete",
-        #                                                                                      expanded=False)
-        # except KeyError:
-        #     pass
-
         # Create a new text box
         st.session_state.text_boxes.append(st.empty())
         # Display the text in the newly created text box
@@ -58,12 +48,10 @@ class EventHandler(AssistantEventHandler):
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 if 'lecture_no' not in st.session_state:
-    if len(sys.argv) > 1:
-        lecture_no = sys.argv[1]
-    else:
-        lecture_no = st.secrets["Lecture_no"]
+    lecture_no = st.query_params["lecture_no"]
     st.session_state.lecture_no = lecture_no
-    st.session_state.prompt_file = 'teaching_prompt_lecture_{0}.txt'.format(st.session_state.lecture_no)
+    st.session_state.prompt_file = 'prompts/teaching_prompts/teaching_prompt_lecture_{0}.txt'.format(
+        st.session_state.lecture_no)
     print("\nName of prompt file: ", st.session_state.prompt_file)
     print("\n")
 
@@ -110,13 +98,12 @@ assistant = client.beta.assistants.update(
 #     model="gpt-4o",
 # )
 
-# st.title("💬 Chatbot")
 st.title("💬 Instructor Bot for PPL Lecture {0}".format(st.session_state.lecture_no))
-"""
-This bot will take you through the entire lecture material for Lecture 1. 
+st.write("""
+This bot will take you through the entire lecture material for Lecture {0}. 
 
 Please start interaction with the Instructor Bot by typing in 'Hi', 'Hello' etc.  
-"""
+""".format(st.session_state.lecture_no))
 
 text_box = st.empty()
 
@@ -146,16 +133,6 @@ display_chat_history()
 
 if prompt := st.chat_input("Enter your message"):
     st.session_state.chat_history.append(("user", prompt))
-
-    # Assuming the user input is related to calculating tax
-    # if "tax" in prompt.lower():  # You can adjust this condition based on your actual use case
-    #     try:
-    #         tax_result = calculate_tax(prompt)  # Assuming prompt contains revenue
-    #         st.session_state.chat_history.append(
-    #             ("assistant", f"Tax for revenue {tax_result['revenue']}: {tax_result['tax']}"))
-    #     except ValueError as e:
-    #         st.session_state.chat_history.append(("assistant", str(e)))
-
     message = client.beta.threads.messages.create(
         thread_id=st.session_state.thread_id,
         role="user",

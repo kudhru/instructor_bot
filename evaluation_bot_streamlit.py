@@ -48,12 +48,10 @@ class EventHandler(AssistantEventHandler):
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 if 'lecture_no' not in st.session_state:
-    if len(sys.argv) > 1:
-        lecture_no = sys.argv[1]
-    else:
-        lecture_no = st.secrets["Lecture_no"]
+    lecture_no = st.query_params["lecture_no"]
     st.session_state.lecture_no = lecture_no
-    st.session_state.prompt_file = 'evaluation_prompt_lecture_{0}.txt'.format(st.session_state.lecture_no)
+    st.session_state.prompt_file = 'prompts/evaluation_prompts/evaluation_prompt_lecture_{0}.txt'.format(
+        st.session_state.lecture_no)
     print("\nName of prompt file: ", st.session_state.prompt_file)
     print("\n")
 

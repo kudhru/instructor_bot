@@ -26,7 +26,7 @@ file_batch = client.beta.vector_stores.file_batches.upload_and_poll(
 print(file_batch.status)
 print(file_batch.file_counts)
 
-teaching_instructions = Path('teaching_prompt_lecture_1.txt').read_text()
+teaching_instructions = Path('prompts/teaching_prompts/teaching_prompt_lecture_1.txt').read_text()
 assistant = client.beta.assistants.create(
     name="PPL Instructor",
     instructions=teaching_instructions,
