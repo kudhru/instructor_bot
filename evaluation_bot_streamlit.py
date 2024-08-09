@@ -99,9 +99,7 @@ assistant = client.beta.assistants.update(
 
 st.title("💬 Evaluation Bot for PPL Lecture {0}".format(st.session_state.lecture_no))
 """
-Please start interaction with the Evaluation Bot by typing in 'Hi', 'Hello' etc.
-
-For any question asked by the Evaluation Bot, please keep your response within 2-3 lines. 
+Please start interaction with the Evaluation Bot by typing in 'Hi', 'Hello' etc. 
 """
 
 text_box = st.empty()
