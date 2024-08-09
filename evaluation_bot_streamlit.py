@@ -17,16 +17,6 @@ class EventHandler(AssistantEventHandler):
         """
         Handler for when a text is created
         """
-        # This try-except block will update the earlier expander for code to complete.
-        # Note the indexing. We are updating the x-1 textbox where x is the current textbox.
-        # Note how `on_tool_call_done` creates a new textbook (which is the x_th textbox, so we want to access the x-1_th)
-        # This is to address an edge case where code is executed, but there is no output textbox (e.g. a graph is created)
-        # try:
-        #     st.session_state[f"code_expander_{len(st.session_state.text_boxes) - 1}"].update(state="complete",
-        #                                                                                      expanded=False)
-        # except KeyError:
-        #     pass
-
         # Create a new text box
         st.session_state.text_boxes.append(st.empty())
         # Display the text in the newly created text box
@@ -57,12 +47,22 @@ class EventHandler(AssistantEventHandler):
 # load_dotenv()
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
+if 'lecture_no' not in st.session_state:
+    if len(sys.argv) > 1:
+        lecture_no = sys.argv[1]
+    else:
+        lecture_no = st.secrets["Lecture_no"]
+    st.session_state.lecture_no = lecture_no
+    st.session_state.prompt_file = 'evaluation_prompt_lecture_{0}.txt'.format(st.session_state.lecture_no)
+    print("\nName of prompt file: ", st.session_state.prompt_file)
+    print("\n")
+
 if 'vector_store_id' not in st.session_state:
     # Create a vector store for book chapter
-    vector_store = client.beta.vector_stores.create(name="PPL Book Chapter 1")
+    vector_store = client.beta.vector_stores.create(name="PPL Book Chapter {0}".format(st.session_state.lecture_no))
 
     # Ready the files for upload to OpenAI
-    file_paths = ["book_chapters/chapter_1.pdf"]
+    file_paths = ["book_chapters/lecture_{0}.pdf".format(st.session_state.lecture_no)]
     file_streams = [open(path, "rb") for path in file_paths]
 
     # Use the upload and poll SDK helper to upload the files, add them to the vector store,
@@ -76,12 +76,6 @@ if 'vector_store_id' not in st.session_state:
     print(file_batch.file_counts)
     st.session_state.vector_store_id = vector_store.id
 
-
-if 'lecture_no' not in st.session_state:
-    st.session_state.lecture_no = sys.argv[1]
-    st.session_state.prompt_file = 'evaluation_prompt_lecture_{0}.txt'.format(st.session_state.lecture_no)
-    print("\nName of prompt file: ", st.session_state.prompt_file)
-    print("\n")
 teaching_instructions = Path(st.session_state.prompt_file).read_text()
 assistant = client.beta.assistants.create(
     name="PPL Evaluator",
