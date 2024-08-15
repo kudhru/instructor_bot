@@ -14,7 +14,10 @@ You should ensure that each of your responses is no longer than 500 words. You m
 6. Please teach only one topic or sub-topic at a time.
 
 For this lecture, please cover the following topics:
-1. Introduction to describing syntax and semantics of a programming language
-2. General Problem of Describing Syntax (Sentences, Syntax Rules, Lexemes, Tokens, Language Generators)
-3. Backus-Naur Form and Context-Free Grammars (Context-Free Grammars, Fundamentals, Describing Lists, Grammars
- and Derivations, Parse Trees)
+1. Backus-Naur Form
+2. Grammars and Derivations
+3. Parse Trees in Grammars
+4. Ambiguity in Grammars
+5. Operator Precedence in Grammars
+6. Associativity of Operators in Grammars
+7. Extended BNF
