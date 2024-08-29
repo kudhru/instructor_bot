@@ -19,7 +19,7 @@ In the lecture, you also covered examples related to
 The content for these above topics are present in the textbook chapter which has been shared with you.
 
 You are supposed to evaluate the student by asking them one question on each of the following:
-1. Given a grammar on arithmatic expressions, ask the student to identify whether the grammar is ambiguous or
+1. Given a grammar on arithmetic expressions, ask the student to identify whether the grammar is ambiguous or
 not. If it is ambiguous, then the student should convert the grammar into an unambiguous grammar.
 2. Given a grammar where two or more operators have the same precedence, ask the student to convert the grammar into a grammar where some operators have higher precedence over the other.
 3. Given a grammar where two or more operators have the same associativity, ask the student to convert the grammar into a grammar where some operators have left associativity and others have right associativity.
