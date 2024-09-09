@@ -89,7 +89,7 @@ assistant = client.beta.assistants.update(
 
 st.title("💬 Doubt Resolution Bot for PPL Lecture {0}".format(st.session_state.lecture_no))
 st.write("""
-This bot will take resolve your doubts for Lecture {0}. 
+This bot will resolve your doubts for Lecture {0}. 
 
 Please start interaction with the Doubt Resolution Bot by typing in 'Hi', 'Hello' etc.  
 """.format(st.session_state.lecture_no))
