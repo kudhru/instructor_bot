@@ -101,16 +101,6 @@ assistant = client.beta.assistants.update(
   tool_resources={"file_search": {"vector_store_ids": [st.session_state.vector_store_id]}},
 )
 
-# Initialize the OpenAI client
-# client = openai.Client(api_key=os.environ.get("OPENAI_API_KEY"))
-#
-# assistant = client.beta.assistants.create(
-#     name="Assistant",
-#     instructions="",
-#     # tools=function_tools,
-#     model="gpt-4o",
-# )
-
 st.title("💬 Evaluation Bot for PPL Lecture {0}".format(st.session_state.lecture_no))
 """
 Please start interaction with the Evaluation Bot by typing in 'Hi', 'Hello' etc. 
