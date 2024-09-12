@@ -7,6 +7,7 @@ from openai import OpenAI
 from openai import AssistantEventHandler
 from typing_extensions import override
 from openai.types.beta.threads import Text, TextDelta
+from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate
 
 class EventHandler(AssistantEventHandler):
     """
@@ -50,9 +51,22 @@ client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 if 'lecture_no' not in st.session_state:
     lecture_no = st.query_params["lecture_no"]
     st.session_state.lecture_no = lecture_no
-    st.session_state.prompt_file = 'prompts/evaluation_prompts/evaluation_prompt_lecture_{0}.txt'.format(
-        st.session_state.lecture_no)
-    print("\nName of prompt file: ", st.session_state.prompt_file)
+
+    def load_text_from_file(file_path):
+        with open(file_path, 'r') as file:
+            return file.read()
+
+    template_file = load_text_from_file("prompt_templates/evaluation_prompt_template.txt")
+    topics_file = load_text_from_file('topics/topics_lecture_{0}.txt'.format(
+        st.session_state.lecture_no))
+    system_message_prompt = SystemMessagePromptTemplate.from_template(template_file)
+    chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt])
+    variables = {
+        "topics": topics_file  
+    }   
+    st.session_state.prompt_file = chat_prompt.format(**variables)
+    #print("\nName of prompt file: ", st.session_state.prompt_file)
+    print(f"\nLength of prompt text: {len(st.session_state.prompt_file)}")
     print("\n")
 
 if 'vector_store_id' not in st.session_state:
@@ -74,7 +88,7 @@ if 'vector_store_id' not in st.session_state:
     print(file_batch.file_counts)
     st.session_state.vector_store_id = vector_store.id
 
-teaching_instructions = Path(st.session_state.prompt_file).read_text()
+teaching_instructions = st.session_state.prompt_file
 assistant = client.beta.assistants.create(
     name="PPL Evaluator",
     instructions=teaching_instructions,

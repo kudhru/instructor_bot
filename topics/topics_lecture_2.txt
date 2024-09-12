@@ -1,0 +1,3 @@
+1. Introduction to describing syntax and semantics of a programming language
+2. General Problem of Describing Syntax (Sentences, Syntax Rules, Lexemes, Tokens, Language Generators)
+3. Backus-Naur Form and Context-Free Grammars (Context-Free Grammars, Fundamentals, Grammars and Deviations, Parse Trees)
