@@ -1,7 +1,0 @@
-1. Array Types (Design Issues, Binding, and Indices - syntax and mapping)
-2. Subscript Bindings and the categories of arrays (static, fixed-stack dynamic, fixed-heap dynamic and heap dynamic)
-3. Array Initialization and common Array Operations
-4. Rectangular and Jagged Arrays, Slices in Arrays
-5. Evaluation and Implementation of Array Types
-6. Associative Arrays (Structure and Operations)
-7. Implementation of Associative Arrays

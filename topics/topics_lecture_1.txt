@@ -1,8 +1,0 @@
-1. Reasons for Studying Concepts of Programming Languages
-2. Programming Domains
-3. Language Evaluation Criteria
-4. Influences on Language Design
-5. Language Categories
-6. Language Design Trade-Offs
-7. Implementation Methods
-8. Programming Environments

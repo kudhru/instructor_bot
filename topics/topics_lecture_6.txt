@@ -1,7 +1,0 @@
-1. Introduction
-2. Primitive Data Types
-3. Numeric Primitive Data Types (Integer, Floating, Complex, Decimal)
-4. Boolean and Character Primitive Data Types
-5. Character String types (Design Issues, Strings and their operations, String Length Options)
-6. Evaluation and  Implementation of Character String Types
-7. Enumeration Types (Design Issues, Designs, Evaluation)

@@ -1,7 +1,0 @@
-1. Names [Subtopics: Design Issues, Name Forms, Special Words]
-2. Variables [Subtopics: Name, Address, Type, Value]
-3. The Concept of Binding [Subtopics: Binding of Attributes to Variables, Static type Binding, Dynamic type binding, Storage Bindings and Lifetime, Static variables, Stack-Dynamic Variables, Heap-Dynamic Variables ]
-4. Scope [Static scope, Blocks, Declaration Order, Global Scope, Dynamic Scope]
-5. Scope and Lifetime
-6. Referencing Environments
-7. Named Constants

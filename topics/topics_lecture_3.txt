@@ -1,7 +1,0 @@
-1. Backus-Naur Form
-2. Grammars and Derivations
-3. Parse Trees in Grammars
-4. Ambiguity in Grammars
-5. Operator Precedence in Grammars
-6. Associativity of Operators in Grammars
-7. Extended BNF

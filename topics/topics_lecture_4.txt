@@ -1,8 +1,0 @@
-1. Introduction to Attribute Grammars
-2. Static semantics
-3. Basic concepts in Attribute Grammars
-4. Attribute Grammars Defined
-5. Intrinsic Attributes in Attribute Grammars
-6. Examples of Attribute Grammars
-7. Computing Attribute Values
-8. Evaluation of Attribute Grammars

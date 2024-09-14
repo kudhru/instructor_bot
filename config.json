@@ -1,0 +1,81 @@
+{
+    "course_name": "Principles of Programming Languages",
+    "lectures": {
+        "1": {
+            "topics": [
+                "Reasons for Studying Concepts of Programming Languages",
+                "Programming Domains",
+                "Language Evaluation Criteria",
+                "Influences on Language Design",
+                "Language Categories",
+                "Language Design Trade-Offs",
+                "Implementation Methods",
+                "Programming Environments"
+            ]
+        },
+        "2": {
+            "topics": [
+                "Introduction to describing syntax and semantics of a programming language",
+                "General Problem of Describing Syntax (Sentences, Syntax Rules, Lexemes, Tokens, Language Generators)",
+                "Backus-Naur Form and Context-Free Grammars (Context-Free Grammars, Fundamentals, Grammars and Deviations, Parse Trees)"
+            ]
+        },
+        "3": {
+            "topics": [
+                "Backus-Naur Form",
+                "Grammars and Derivations",
+                "Parse Trees in Grammars",
+                "Ambiguity in Grammars",
+                "Operator Precedence in Grammars",
+                "Associativity of Operators in Grammars",
+                "Extended BNF"
+            ]
+        },
+        "4": {
+            "topics": [
+                "Introduction to Attribute Grammars",
+                "Static semantics",
+                "Basic concepts in Attribute Grammars",
+                "Attribute Grammars Defined",
+                "Intrinsic Attributes in Attribute Grammars",
+                "Examples of Attribute Grammars",
+                "Computing Attribute Values",
+                "Evaluation of Attribute Grammars"
+            ]
+        },
+        "5": {
+            "topics": [
+                "Names [Subtopics: Design Issues, Name Forms, Special Words]",
+                "Variables [Subtopics: Name, Address, Type, Value]",
+                "The Concept of Binding [Subtopics: Binding of Attributes to Variables, Static type Binding, Dynamic type binding, Storage Bindings and Lifetime, Static variables, Stack-Dynamic Variables, Heap-Dynamic Variables]",
+                "Scope [Static scope, Blocks, Declaration Order, Global Scope, Dynamic Scope]",
+                "Scope and Lifetime",
+                "Referencing Environments",
+                "Named Constants"
+            ]
+        },
+        "6": {
+            "topics": [
+                "Introduction",
+                "Primitive Data Types",
+                "Numeric Primitive Data Types (Integer, Floating, Complex, Decimal)",
+                "Boolean and Character Primitive Data Types",
+                "Character String types (Design Issues, Strings and their operations, String Length Options)",
+                "Evaluation and Implementation of Character String Types",
+                "Enumeration Types (Design Issues, Designs, Evaluation)"
+            ]
+        },
+        "7": {
+            "topics": [
+                "Array Types (Design Issues, Binding, and Indices - syntax and mapping)",
+                "Subscript Bindings and the categories of arrays (static, fixed-stack dynamic, fixed-heap dynamic and heap dynamic)",
+                "Array Initialization and common Array Operations",
+                "Rectangular and Jagged Arrays",
+                "Slices in Arrays",
+                "Evaluation and Implementation of Array Types",
+                "Associative Arrays (Structure and Operations)",
+                "Implementation of Associative Arrays"
+            ]
+        }
+    }
+}
