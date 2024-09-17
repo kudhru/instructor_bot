@@ -78,10 +78,12 @@ course_name = course_data.get("course_name", "Course Name Not Found")
 
 topics_list = course_data.get("lectures", {}).get(lecture_no, {}).get("topics", ["Topics Not Found"])
 topics = "\n".join(topics_list)
+questions = course_data.get("lectures", {}).get(lecture_no, {}).get("questions", "No Questions Found")
 
 variables = {
     "course_name": course_name,
-    "topics": topics
+    "topics": topics,
+    "questions": questions
 }
 
 st.session_state.prompt_file = template_file.format(**variables)

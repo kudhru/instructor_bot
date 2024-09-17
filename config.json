@@ -11,14 +11,16 @@
                 "Language Design Trade-Offs",
                 "Implementation Methods",
                 "Programming Environments"
-            ]
+            ],
+            "questions": "You are supposed to evaluate the student by asking them four questions. 1. Your questions should such that they check the basic understanding of the student. You don’t need to check the in-depth knowledge of the student. 2. Please ensure that the questions are strictly based on the textbook chapter that has been provided to you. Please also ensure that the questions are short answer questions requiring at max 2-3 line answers."
         },
         "2": {
             "topics": [
                 "Introduction to describing syntax and semantics of a programming language",
                 "General Problem of Describing Syntax (Sentences, Syntax Rules, Lexemes, Tokens, Language Generators)",
                 "Backus-Naur Form and Context-Free Grammars (Context-Free Grammars, Fundamentals, Grammars and Deviations, Parse Trees)"
-            ]
+            ],
+            "questions": "You are supposed to evaluate the student by asking them four questions. Each of these four questions should be of the following type: Given a sample grammar, ask the student to write all the steps in the derivation of a specific statement or program which is valid according to the sample grammar. Of course, please ensure that the sample grammar does not contain more than 6 to 8 production rules in total. Otherwise, it will be difficult for the students to give the entire derivation."
         },
         "3": {
             "topics": [
@@ -29,7 +31,8 @@
                 "Operator Precedence in Grammars",
                 "Associativity of Operators in Grammars",
                 "Extended BNF"
-            ]
+            ],
+            "questions": "You are supposed to evaluate the student by asking them one question on each of the following: 1. Given a grammar on arithmetic expressions, ask the student to identify whether the grammar is ambiguous or not. If it is ambiguous, then the student should convert the grammar into an unambiguous grammar. 2. Given a grammar where two or more operators have the same precedence, ask the student to convert the grammar into a grammar where some operators have higher precedence over the other. 3. Given a grammar where two or more operators have the same associativity, ask the student to convert the grammar into a grammar where some operators have left associativity and others have right associativity. 4. Given a grammar in BNF notation, ask the student to convert it to EBNF notation. The grammar in each question should have a minimum of five to six non-terminal symbols and a minimum of eight to ten production rules."
         },
         "4": {
             "topics": [
@@ -41,7 +44,8 @@
                 "Examples of Attribute Grammars",
                 "Computing Attribute Values",
                 "Evaluation of Attribute Grammars"
-            ]
+            ],
+            "questions": "Some example questions which you can go through to understand what kind of questions can be asked from the student: 1. What is the need of attribute grammars? What does it provide over and above BNF or context free grammars? 2. What are the various types of attributes (intrinsic, inherited and synthesized attributes)? How are they computed? 3. What are semantic rules and predicate functions? Please do not limit yourselves to the above questions. You can ask any other questions as well whatever is related to the topics covered in the class. The above example questions are just for your reference. In total, please ask only four questions from the student."
         },
         "5": {
             "topics": [
@@ -52,7 +56,8 @@
                 "Scope and Lifetime",
                 "Referencing Environments",
                 "Named Constants"
-            ]
+            ],
+            "questions": "Some ideas of questions along with advice for framing the questions on the basis of which you can frame the questions asked are listed below, do not use same questions but make new questions based on these ideas: 1. Ask questions regarding the lifetime of variables in a similar context as the example given in the textbook. 2. Give the student a skeletal program with multiple function calls, or nested functions. Ask the student to figure out which of the declaration of some variable (say x) is the correct one for a reference to x. 3. For concepts on Storage Bindings and Lifetime, feel free to make an example and tell the student whether it is a static variable, stack-dynamic variable, explicit heap-dynamic variable or implicit heap-dynamic variable. Then ask relevant questions based on the particular category of variables. 4. Ask questions with a mixture of concepts from all the topics covered. Ensure that no topic is left out. 5. Do not ask a question based on a single concept. Ensure that the question is a mix of multiple concepts. You do not have to stick to just these types of questions. It is strongly encourage to ask other questions out of this set as well. You can always take reference from the examples in the textbook and frame a question by yourself. For example questions, feel free to reference the problem set and review questions from the textbook chapter shared with you. Ensure that each question is of a different type. For instance, if you have asked one question on nested functions, ensure that the others are not similar. Even the skeletal programs should be significantly different from each other. Ensure the basic structure of the question is different to give a sense of diversity in the questions asked. Ensure the difficulty level of the questions asked is uniform for all questions. The difficulty level of a question can be gauged by the number of steps of reasoning you apply on the theoretical knowledge in the textbook. If you have to use multiple theoretical concepts from the textbook it is a more difficult question, than one in which you have to use fewer theoretical concepts. For every question asked ensure that you also have the answer validated from some concept as mentioned in the textbook chapter. Refrain from asking basic theoretical questions like : What is an Alias? Please do not limit yourselves to the above questions. You can ask any other questions as well whatever is related to the topics covered in the class. The above example questions are just for your reference. In total, please ask only four questions from the student."
         },
         "6": {
             "topics": [
@@ -63,7 +68,8 @@
                 "Character String types (Design Issues, Strings and their operations, String Length Options)",
                 "Evaluation and Implementation of Character String Types",
                 "Enumeration Types (Design Issues, Designs, Evaluation)"
-            ]
+            ],
+            "questions": "You are supposed to evaluate the student by asking them one question on each of the following: 1. Give the students a question asking the implementation of the decimal data type and how they are stored internally. 2. Ask students what are the three string length options provided in programming languages. 3. Ask the question to students about the advantages of using a linked list allocation and a contiguous reallocation approach for memory management of strings. Evaluate against these two points (1)In linked list allocation, memory can be allocated as needed without the need to move existing data to a new block. (2)In contiguous reallocation, Simple and fast for accessing string elements because they are stored contiguously in memory. (Do not show these points to the students.) 4. Ask students how Enumeration types in C#, F# are more reliable compared to languages like C/C++. Expect them to answer these two points. (1) No arithmetic operations are legal on enumeration types; this prevents adding days of the week, for example, and (2) second, no enumeration variable can be assigned a value outside its defined range.(Do not show these points to the students.)"
         },
         "7": {
             "topics": [
@@ -75,7 +81,42 @@
                 "Evaluation and Implementation of Array Types",
                 "Associative Arrays (Structure and Operations)",
                 "Implementation of Associative Arrays"
-            ]
+            ],
+            "questions": "You are supposed to evaluate the student by asking them one question on each of the following: 1. Give the students a 2 dimensional array of large dimension in row major form, ask them to calculate the offset of a given element in the array from the base address. Provide the size of the elements of the array in bytes. If the student gets an incorrect answer, explain the calculation of offset and ask another question on the same. 2. Given an C like initialization of an array, ask the student to identify the category (static, fixed-stack dynamic, fixed-heap dynamic or heap dynamic) of array. 3. Explain the concept of slices of arrays and its implementation in languages of your choice. 4. Provide a code snippet involving an associative array (like a hash map or dictionary) and ask the student to identify the implementation details or possible operations (e.g., insertion, deletion). Ensure that the code snippet has at least 3 different operations on the associative array and is at least 5 lines long."
+        },
+        "8": {
+            "topics": [
+                "Record Types (Definition, References to record fields, Evaluation and Implementation)",
+                "Tuple Types",
+                "List Types (Include List comprehensions)",
+                "Union Types (Design Issues, Discriminated Versus Free Unions, Evaluation and Implementation)",
+                "Pointer and Reference Types (Design issues, pointer operations)",
+                "Pointer Problems (Dangling pointers, Lost Heap-Dynamic Variables)",
+                "Reference Types"
+            ],
+            "questions": "You are supposed to evaluate the student by asking them one question on each of the following:\n\n1. Ask students why run-time descriptor for records are unnecessary. (Expect answer similar to field access are handled using offsets.)\n2. Ask students why unions in C/C++ are known as free unions. (Expect answer similar to complete freedom from type checking in their use. Assignments are not type checked, because system cannot determine the current type of the current value in union.)\n3. Consider the following Python code segment and give the output printed:\n   matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 10]]\n   result = [matrix[i][i] ** 2 if matrix[i][i] % 2 == 0 else matrix[i][i] + 1 for i in range(len(matrix))]\n   print(result)\n   (final answer is [2, 6, 100])\n4. In the given C code, identify which pointers are Dangling pointers and which are lost Heap dynamic pointers:\n   #include <stdio.h>\n   #include <stdlib.h>\n\n   int main() {\n       int *p1 = (int *)malloc(sizeof(int));\n       int *p2 = (int *)malloc(sizeof(int));\n       p1 = (int *)malloc(sizeof(int));\n       int *p3 = p2;\n       free(p2);\n\n       return 0;\n   }\n   (final answer is p3 is Dangling and p1 is lost heap dynamic. Try to use line number while explaining code.)"
+        },
+        "9": {
+            "topics": [
+                "Pointers (Design Issues, Pointer Operations)",
+                "Pointer Problems (Dangling Pointers, Lost Heap-Dynamic Pointers)",
+                "Reference Types",
+                "Evaluation and Implementation of Pointer and Reference Types (Representations of Pointers and References, Solutions to the Dangling-Pointer Problem, Heap Management)",
+                "Optional Types",
+                "Type Checking",
+                "Strong Typing",
+                "Type Equivalence"
+            ],
+            "questions": "You are supposed to evaluate the student by asking them questions similar to the one's in the textbook chapter I have provided you.\nStrictly ensure that you don't ask questions that are outside of the scope of the topics covered in the textbook chapter.\nAlso ensure that you do not directly ask the same questions as the textbook. Do not ask descriptive questions solely based on theory.\nYou need to ask MCQs, fill in the blanks, or one word answer questions and other objective questions to evaluate the student.\nYou need to ask a minimum of 6-7 questions to the student.\n\nSome example questions just to take inspiration from are as follows:\n1. If a language has freedom to use pointers, which of the following statements is the most correct one for that programming language? (Give the options)\n2. Given a code segment in C programming language\n   struct states { char name[20]; int population; float happiness_index; }\n   struct states a;\n   The type expression best described for type checking for the variable a is (Give the options)\n3. If a language does type checking and checking array index range at the compile time, which of the following statements is the most correct one for that language? (Give the options)\n4. Consider an array of type integers declared as follows A: array [18..27] of integers Then, for given variable n, mark the correctness of the following sentences.\n   (a) The address of A[n] is computed as base+C+ (n-18+1)*sizeof(int)\n   (b) The type checking of element A[n] is done at run time\n   (c) The bound checking of A[n] is done at run time.\n   (d) The elements of the array are of the same type\n\nPlease ensure that NONE of the questions you ask are directly any one of these questions. These are just to give you an idea of the questions you can ask.\n\nEnsure the questions are not too easy or too difficult. They should be of medium difficulty level.\nMake sure that the questions are relevant to the topic and sub-topic which you have taught in the lecture."
+        },
+        "10": {
+            "topics": [
+                "Arithmetic Expressions (design issues and evaluation order)",
+                "Operator evaluation order (precedence, associativity, and parentheses, conditional expressions)",
+                "Operand evaluation order (side effects, referential transparency)",
+                "Overloaded operators"
+            ],
+            "questions": "You are supposed to evaluate the student by asking them one question on each of the following:\n\n1. Ask 3 true or false questions about overloaded operators and referential transparency. The questions should be based on the content of the textbook chapter. Ask one question at a time.\n2. Give the students an arithmetic expression and ask them to calculate the result of the arithmetic expression. Include addition, multiplication, subtraction, division, and exponentiation. Mention the precedence order. The answer of the expression should be according to the custom operator precedence and should be an integer. The question should necessarily have ALL of the specified operators. Ask 2 different questions for 2 different expressions.\n3. Give the students a complex conditional expression with subexpressions containing ternary operator. Ask the students to evaluate the expression. The answer should be a boolean value. Ask 2 different questions, the first question should have 2 subexpressions and the next should have 3."
         }
     }
 }
