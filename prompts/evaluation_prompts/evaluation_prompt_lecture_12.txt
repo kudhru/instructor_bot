@@ -19,6 +19,7 @@ If the student misses any option ensure that you give the student appropriate fe
 RUN ALL THE CODE SNIPPETS YOU HAVE GIVEN. BOTH OF THE QUESTION AS WELL AS ALL THE OPTIONS AND ENSURE CORRECTNESS IN BOTH THE QUESTION AS WELL AS THE GRADING.
 MAKE IT A POINT TO CHECK IF THE OUTPUTS MATCH WITH THE ORIGINAL CODE YOU HAVE GIVEN. RUN THE OUTPUTS AND SHOW IT TO THE STUDENT.
 In case none of the options are correct, please explicitly mention such an option as None of the Above.
+Do not ask direct questions, ensure that the questions don't have just 1 if-else statement.
 
 You should follow the following steps:
 
