@@ -71,19 +71,17 @@ if 'lecture_no' not in st.session_state:
 
 course_data = load_json_from_file("config.json")
 
-template_file = load_text_from_file("prompt_templates/evaluation_prompt_template.txt")
+template_file = load_text_from_file("prompt_templates/doubt_resolution_prompt_template.txt")
 
 lecture_no = st.session_state.lecture_no
 course_name = course_data.get("course_name", "Course Name Not Found")
 
 topics_list = course_data.get("lectures", {}).get(lecture_no, {}).get("topics", ["Topics Not Found"])
 topics = "\n".join(topics_list)
-questions = course_data.get("lectures", {}).get(lecture_no, {}).get("questions", "No Questions Found")
 
 variables = {
     "course_name": course_name,
-    "topics": topics,
-    "questions": questions
+    "topics": topics
 }
 
 st.session_state.prompt_file = template_file.format(**variables)
@@ -111,7 +109,7 @@ if 'vector_store_id' not in st.session_state:
 
 teaching_instructions = st.session_state.prompt_file
 assistant = client.beta.assistants.create(
-    name="{0} Evaluator".format(course_name),
+    name="{0} Doubt Resolver".format(course_name),
     instructions=teaching_instructions,
     model="gpt-4o-mini",
     tools=[{"type": "file_search"}],
@@ -121,12 +119,15 @@ assistant = client.beta.assistants.update(
   tool_resources={"file_search": {"vector_store_ids": [st.session_state.vector_store_id]}},
 )
 
-st.title("💬 Evaluation Bot for {0} Lecture {1}".format(course_name, st.session_state.lecture_no))
+st.title("💬 Doubt Resolution Bot for {0} Lecture {1}".format(course_name, st.session_state.lecture_no))
 st.write("""
-Please start interaction with the Evaluation Bot by typing in 'Hi', 'Hello' etc.  
+This bot will resolve your doubts for Lecture {0}. 
+
+Please start interaction with the Doubt Resolution Bot by typing in 'Hi', 'Hello' etc.  
 """.format(st.session_state.lecture_no))
 
 text_box = st.empty()
+
 
 # Initialize chat history in session state if not already done
 if 'chat_history' not in st.session_state:

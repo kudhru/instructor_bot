@@ -9,6 +9,6 @@
     3. Run the instructor bot using `streamlit run instructor_bot_streamlit.py`
          1. The above command will open a browser window with the following url: `http://localhost:8502/` and it will also show an error.
          2. Get rid of the error by modifying the url as `http://localhost:8502/?lecture_no=2` where `2` is the lecture number. You can replace it with any lecture you want to study.
-    4. Run the evaluation bot using `streamlit run instructor_bot_streamlit.py`
+    4. Run the evaluation bot using `streamlit run evaluation_bot_streamlit.py`
          1. The above command will open a browser window with the following url: `http://localhost:8502/` and it will also show an error.
          2. Get rid of the error by modifying the url as `http://localhost:8502/?lecture_no=2` where `2` is the lecture number. You can replace it with any lecture on which you want to take the evaluation.
