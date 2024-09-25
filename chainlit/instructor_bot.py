@@ -5,11 +5,23 @@ from openai import OpenAI, AsyncOpenAI
 from dotenv import load_dotenv
 from openai.lib.streaming import AsyncAssistantEventHandler
 from chainlit.types import ThreadDict
+import chainlit.data as cl_data
+from chainlit.logger import logger
 
 load_dotenv()
 async_openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 sync_openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+class CustomDataLayer(cl_data.LiteralDataLayer):
+    def __init__(self, api_key: str, server: Optional[str]):
+        from literalai import AsyncLiteralClient
+
+        self.client = AsyncLiteralClient(api_key=api_key, url=server)
+        logger.info("Chainlit data layer initialized for instructor bot")
+
+literal_api_key = os.getenv("LITERAL_API_KEY_INSTRUCTOR_BOT")
+literal_api_url = None
+cl_data._data_layer = CustomDataLayer(api_key=literal_api_key, server=literal_api_url)
 
 class EventHandler(AsyncAssistantEventHandler):
 
