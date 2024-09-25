@@ -47,8 +47,8 @@ def oauth_callback(
 @cl.on_chat_start
 async def start_chat():
     introductory_message = ("Welcome to the Principles of Programming Language Course. Please enter the "
-                            "lecture no. you wish to learn about. For example, if you want to learn about "
-                            "lecture no. 4, please enter the number:\n 4")
+                            "lecture no. you wish to take the evaluation on. For example, if you want "
+                            "to take the evaluation for lecture no. 4, please enter the number:\n 4")
     await cl.Message(content=introductory_message).send()
 
 
@@ -57,7 +57,7 @@ async def main(message: cl.Message):
     if cl.user_session.get("lecture_no") is None:
         await set_initial_user_session_keys(message)
     else:
-        await start_conversation_with_llm(message)
+        await start_conversation_with_llm(message.content)
 
 
 async def set_initial_user_session_keys(message):
@@ -68,7 +68,7 @@ async def set_initial_user_session_keys(message):
         if 0 < number <= int(os.getenv("MAX_LECTURE_NUMBER")):
             cl.user_session.set("lecture_no", lecture_no)
             assistant = sync_openai_client.beta.assistants.retrieve(
-                os.getenv(f"INSTRUCTOR_ASSISTANT_ID_LECTURE_{lecture_no}")
+                os.getenv(f"EVALUATION_ASSISTANT_ID_LECTURE_{lecture_no}")
             )
             cl.user_session.set("assistant", assistant)
             cl.user_session.set("assistant_id", assistant.id)
@@ -79,8 +79,8 @@ async def set_initial_user_session_keys(message):
 
             # Store thread ID in user session for later use
             cl.user_session.set("thread_id", thread.id)
-            await cl.Message(content=f"Thanks, we will now start going through the lecture "
-                                     f"content for Lecture No. {lecture_no}. Are you ready?").send()
+            await cl.Message(content=f"Thanks, we will now start the evaluation for "
+                                     f"Lecture No. {lecture_no}. Are you ready?").send()
         else:
             await cl.Message(content="Invalid Lecture No. Please enter the correct lecture no.").send()
     else:
@@ -96,7 +96,7 @@ async def start_conversation_with_llm(message):
     oai_message = await async_openai_client.beta.threads.messages.create(
         thread_id=thread_id,
         role="user",
-        content=message.content,
+        content=message,
     )
     # Create and Stream a Run
     async with async_openai_client.beta.threads.runs.stream(
@@ -105,7 +105,6 @@ async def start_conversation_with_llm(message):
             event_handler=EventHandler(assistant_name=assistant_name),
     ) as stream:
         await stream.until_done()
-
 
 @cl.on_chat_resume
 async def on_chat_resume(thread: ThreadDict):

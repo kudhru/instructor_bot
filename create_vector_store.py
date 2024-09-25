@@ -25,4 +25,4 @@ file_batch = client.beta.vector_stores.file_batches.upload_and_poll(
     vector_store_id=vector_store.id, files=file_streams
 )
 
-print(f"Vector Store created with id: {vector_store.id}")
+print(f"Vector Store Id for lecture no. {lecture_no}: {vector_store.id}")
