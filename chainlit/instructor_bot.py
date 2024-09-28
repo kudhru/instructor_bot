@@ -1,6 +1,7 @@
 import os
 from typing import Dict, Optional
 import chainlit as cl
+from langchain_core.messages import convert_to_messages
 from openai import OpenAI, AsyncOpenAI
 from dotenv import load_dotenv
 from openai.lib.streaming import AsyncAssistantEventHandler
@@ -12,12 +13,15 @@ load_dotenv()
 async_openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 sync_openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+max_lecture_no = os.getenv("MAX_LECTURE_NUMBER")
+
 class CustomDataLayer(cl_data.LiteralDataLayer):
     def __init__(self, api_key: str, server: Optional[str]):
         from literalai import AsyncLiteralClient
 
         self.client = AsyncLiteralClient(api_key=api_key, url=server)
         logger.info("Chainlit data layer initialized for instructor bot")
+
 
 literal_api_key = os.getenv("LITERAL_API_KEY_INSTRUCTOR_BOT")
 literal_api_url = None
@@ -49,19 +53,54 @@ class EventHandler(AsyncAssistantEventHandler):
 
 @cl.oauth_callback
 def oauth_callback(
-  provider_id: str,
-  token: str,
-  raw_user_data: Dict[str, str],
-  default_user: cl.User,
+        provider_id: str,
+        token: str,
+        raw_user_data: Dict[str, str],
+        default_user: cl.User,
 ) -> Optional[cl.User]:
-  return default_user
+    return default_user
 
 @cl.on_chat_start
 async def start_chat():
-    introductory_message = ("Welcome to the Principles of Programming Language Course. Please enter the "
-                            "lecture no. you wish to learn about. For example, if you want to learn about "
-                            "lecture no. 4, please enter the number:\n 4")
+    introductory_message = (f"Welcome to the Principles of Programming Language Course. Please enter the "
+                            f"lecture no. you wish to learn about. For example, if you want to learn about "
+                            f"lecture no. 4, please enter the number: 4\n"
+                            f"Please note that currently the bot supports conversations for up to lecture "
+                            f"no. {max_lecture_no}."
+                            )
     await cl.Message(content=introductory_message).send()
+
+
+
+
+async def save_conversation_history(message):
+    messages = cl.chat_context.to_openai()
+    messages = convert_to_messages(messages)
+    dir_path = './.chat_history'
+    os.makedirs(dir_path, exist_ok=True)
+    file_name = "chat_session_{0}.txt".format(cl.user_session.get('id'))
+    file_path = os.path.join(dir_path, file_name)
+
+    # Write the strings to the file
+    with open(file_path, 'w') as f:
+        for message in messages:
+            f.write(message.pretty_repr() + '\n')
+
+    print(f"Chat history saved at: {file_path}")
+
+    elements = [
+        cl.File(
+            name=file_name,
+            path=file_path,
+            display="inline",
+        ),
+    ]
+
+    await cl.Message(
+        content="Please download this file and upload it on Nalanda", elements=elements
+    ).send()
+    os.remove(file_path)
+
 
 
 @cl.on_message
@@ -69,7 +108,10 @@ async def main(message: cl.Message):
     if cl.user_session.get("lecture_no") is None:
         await set_initial_user_session_keys(message)
     else:
-        await start_conversation_with_llm(message)
+        if message.content.strip() == "END":
+            await save_conversation_history(message)
+        else:
+            await converse_with_llm(message)
 
 
 async def set_initial_user_session_keys(message):
@@ -77,7 +119,7 @@ async def set_initial_user_session_keys(message):
     # Check if the string is a valid natural number
     if lecture_no.isdigit():
         number = int(lecture_no)
-        if 0 < number <= int(os.getenv("MAX_LECTURE_NUMBER")):
+        if 0 < number <= int(max_lecture_no):
             cl.user_session.set("lecture_no", lecture_no)
             assistant = sync_openai_client.beta.assistants.retrieve(
                 os.getenv(f"INSTRUCTOR_ASSISTANT_ID_LECTURE_{lecture_no}")
@@ -100,7 +142,7 @@ async def set_initial_user_session_keys(message):
         await cl.Message(content="Invalid Lecture No. Please enter the correct lecture no.").send()
 
 
-async def start_conversation_with_llm(message):
+async def converse_with_llm(message):
     assistant_id = cl.user_session.get("assistant_id")
     assistant_name = cl.user_session.get("assistant_name")
     thread_id = cl.user_session.get("thread_id")
