@@ -64,12 +64,13 @@ def oauth_callback(
 @cl.on_chat_start
 async def start_chat():
     introductory_message = (f"Welcome to the OOP Practice Session."
-                            f"Please note that this is an AI-managed session."
-                            f"AI can make mistakes and therefore, please don't trust it blindly.\n"
-                            f"The course textbook, lecture slides and finally, compiling and running the "
-                            f"Java code is the best way to learn and confirm any concept or fact related "
-                            f"to the course. If you are doubtful about any of the AI responses, "
-                            f"please double check with the instructor or the course material."
+                            f"Please be aware that this is an AI-assisted session, and while AI can be a "
+                            f"valuable tool, it can make mistakes. It is advisable not to rely solely on "
+                            f"AI-generated responses. To ensure a thorough understanding of course "
+                            f"concepts, it is recommended to refer to the course textbook, lecture slides, "
+                            f"and to compile and execute Java code for verification. If there is any "
+                            f"uncertainty regarding an AI response, please consult the instructor or review "
+                            f"the course materials for confirmation."
                             f"Please start the session by entering: **START**"
                             )
     await cl.Message(content=introductory_message).send()
