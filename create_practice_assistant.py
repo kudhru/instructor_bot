@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 # create the OpenAI client
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=os.getenv("OOP_OPENAI_API_KEY"))
 
 prompt_file = './courses/oop/prompts/practice_bot_quiz_1.txt'
 print(f"Name of prompt file: {prompt_file}")

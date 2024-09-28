@@ -10,8 +10,8 @@ import chainlit.data as cl_data
 from chainlit.logger import logger
 
 load_dotenv()
-async_openai_client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-sync_openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+async_openai_client = AsyncOpenAI(api_key=os.getenv("OOP_OPENAI_API_KEY"))
+sync_openai_client = OpenAI(api_key=os.getenv("OOP_OPENAI_API_KEY"))
 
 class CustomDataLayer(cl_data.LiteralDataLayer):
     def __init__(self, api_key: str, server: Optional[str]):
