@@ -65,12 +65,16 @@ def oauth_callback(
 
 @cl.on_chat_start
 async def start_chat():
-    introductory_message = (f"Welcome to the Principles of Programming Language Course. Please enter the "
-                            f"lecture no. you wish to take the evaluation on. For example, if you want "
-                            f"to take the evaluation for lecture no. 4, please enter the number: 4\n"
-                            f"Please note that currently the bot supports conversations for up to lecture "
-                            f"no. {max_lecture_no}."
-                            )
+    introductory_message = f"""
+## Welcome to the Principles of Programming Language Course
+
+### **Please enter the lecture number you wish to take the evaluation on.**  
+   For example, if you want to take the evaluation for lecture no. 4, please enter: **`4`**.
+
+### **Please note that currently the bot supports conversations for up to lecture number `{max_lecture_no}`.**
+
+### **Whenever you want to end the conversation, please enter:** `END`.
+    """
     await cl.Message(content=introductory_message).send()
 
 async def save_conversation_history(message):
