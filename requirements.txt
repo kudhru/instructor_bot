@@ -3,3 +3,4 @@ watchdog==4.0.1
 python-dotenv==1.0.1
 chainlit==1.2.0
 streamlit==1.37.0
+langchain-core==0.3.6

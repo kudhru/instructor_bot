@@ -34,3 +34,8 @@
       recieved in step 3.
    7. To test the `instructor_bot`, run `chainlit run chainlit/instructor_bot.py --host=localhost --port=8000 --headless`
    8. To test the `evaluation_bot`, run `chainlit run chainlit/evaluation_bot.py --host=localhost --port=8000 --headless`
+3. Once you have locally tested the changes, push it to github in the `chainlit` branch.
+4. `scp` the updated `.env` file to the remote server.
+5. Log into the remote server and do a git pull.
+6. Each bot is running in a separate tmux session. Do `tmux ls` to know the active tmux sessions.
+7. Restart all the bots (instructor bot and evaluation bot).
