@@ -74,7 +74,8 @@ async def start_chat():
 ### **Please note that currently the bot supports conversations for up to lecture number `{max_lecture_no}`.**
 
 ### **Whenever you want to end the conversation, please enter:** `END`.
-### Once you end the conversation, you will be allowed to download a text file having your full conversation with the bot. This file can be directly uploaded to Nalanda.
+### Once you explicity `END` the conversation, you will be allowed to download a text file having your full conversation with the bot. This file can be directly uploaded to Nalanda. 
+## **IMPORTANT:** Please note that unless you enter `END`, you will `NOT` get an option to download the text file having your full conversation.
     """
     await cl.Message(content=introductory_message).send()
 
